@@ -203,7 +203,7 @@ class Upload{
 		curl_close ($session);
 		if(!$server_output){
 			unlink("uploads/" .$this->fileName);
-			self::setError("回调无法发起");
+			self::setError("回调无法发起,错误代码：".curl_errno($session));
 		}
 		if($httpCode != 200){
 			$resutltData = json_decode($server_output,true);
