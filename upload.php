@@ -133,6 +133,7 @@ class Upload{
 		if(!$this->auth->check($this->policy,"UPLOAD")){
 			self::setError("auth failed.");
 		}
+		$this->frontPath = isset($_GET["path"]) ? self::urlsafe_b64decode($_GET["path"]) : "";
 		$this->originName = self::urlsafe_b64decode($_GET["fname"]);
 		$chunkList = explode(",",file_get_contents("php://input"));
 		$this->combineChunk($chunkList);
